@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { PostService } from 'src/app/services/post.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'post-edit',
@@ -13,12 +14,14 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class PostEditComponent implements OnInit {
 
+  public selectedFile: any;
   public page_title: string;
   public identity: any;
   public token: any;
   public post: any;
   public categories: any;
   public status: any;
+  public url: string;
   public froalaOptions: Object = {
     charCounterCount: true,
     language: 'es',
@@ -40,6 +43,7 @@ export class PostEditComponent implements OnInit {
     this.page_title = 'Editar una entrada';
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.url = environment.API_URL;
   }
 
   ngOnInit(): void {
@@ -86,23 +90,41 @@ export class PostEditComponent implements OnInit {
     });
   }
 
+  cargarImagen(event:any){
+    console.log(event.target.files[0]);
+    this.selectedFile=<File>event.target.files[0];
+     }
+
   onSubmit(form:any){
-    this._postService.update(this.token, this.post, this.post.id).subscribe(
-      response => {
-        if(response.status == 'success'){
-          this.post = response.post;
-          this.status = 'success';
-          this._router.navigate(['/entrada', this.post.id]);
-          form.reset();
-        } else {
-          this.status = 'error';
+
+    this._postService.upload(this.token, this.selectedFile).subscribe(
+      response=>{
+        if(response.status=='success'){
+          console.log(response);
+          this.post.image = response.image;
+
+          this._postService.update(this.token, this.post, this.post.id).subscribe(
+            response => {
+              if(response.status == 'success'){
+                this.post = response.post;
+                this.status = 'success';
+                this._router.navigate(['/entrada', this.post.id]);
+                form.reset();
+              } else {
+                this.status = 'error';
+              }
+            },
+            error => {
+              console.log(error);
+              this.status = 'error';
+            }
+          )
         }
       },
-      error => {
-        console.log(error);
-        this.status = 'error';
+      error=>{
+        console.log(<any>error);
       }
-    )
+    );
   }
 
   onSelect(event: any) {

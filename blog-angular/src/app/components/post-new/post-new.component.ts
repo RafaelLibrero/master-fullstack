@@ -71,11 +71,11 @@ export class PostNewComponent implements OnInit {
 
     this._postService.upload(this.token, this.selectedFile).subscribe(
       response=>{
-         if(response.status=='success'){
-           console.log(response);
-           this.post.image = response.image;
+        if(response.status=='success'){
+          console.log(response);
+          this.post.image = response.image;
 
-           this._postService.create(this.token, this.post).subscribe(
+          this._postService.create(this.token, this.post).subscribe(
             response => {
               if(response.status == 'success'){
                 this.post = response.post;
@@ -91,7 +91,7 @@ export class PostNewComponent implements OnInit {
               this.status = 'error';
             }
           )
-         }
+        }
       },
       error=>{
         console.log(<any>error);
