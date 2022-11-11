@@ -1,0 +1,15 @@
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 900px;
+    overflow: hidden;
+}
+
+.avatar img{
+    height: 40px;
+}
+
+footer{
+    color: lightgray;
+    margin-top: 50px;
+}

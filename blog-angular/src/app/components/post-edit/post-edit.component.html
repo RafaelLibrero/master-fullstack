@@ -1,0 +1,62 @@
+<div class="col-md-12 mt-3">
+    <h1>{{page_title}}</h1>
+    <p *ngIf="status != 'success'">
+        Edita tu post {{post.title}}
+    </p>
+    <hr>
+
+    <div class="alert alert-success col-md-5 mt-3" *ngIf="status == 'success'">
+        Datos guardados correctamente.
+    </div>
+
+    <div class="alert alert-danger col-md-5 mt-3" *ngIf="status == 'error'">
+        Los datos no se han guardado, vuelve a intentarlo más tarde.
+    </div>
+
+    <form class="col-md-5 ml-0 pl-0" #postNew="ngForm" (ngSubmit)="onSubmit(postNew)">
+
+        <div class="form-group">
+            <label for="title">Titulo</label>
+            <input type="text" name="title" #title="ngModel" 
+            [(ngModel)]="post.title" class="form-control" required/>
+            <small *ngIf="!title.valid && title.touched" class="invalid-feedback d-block">
+                El titulo no es válido
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="content">Contenido</label>
+            <textarea [froalaEditor]="froalaOptions" name="content" #content="ngModel"
+            [(ngModel)]="post.content" required></textarea>
+            <small *ngIf="!content.valid && content.touched" class="invalid-feedback d-block">
+                El contenido no es válido
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="category_id">Categoria</label>
+            <select name="category_id" #category="ngModel" [(ngModel)]="post.category_id"
+            class="form-control">
+                <option *ngFor="let category of categories" value="{{category.id}}">
+                    {{category.name}}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="image">Imagen</label>
+            <ngx-dropzone (change)="onSelect($event)" accept="image/jpeg,image/jpg,image/png,image/gif"
+                [multiple]="false" name="image" class="form-control" #image="ngModel" [(ngModel)]="post.image">
+                <ngx-dropzone-label>Drop your image</ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+            </ngx-dropzone>
+        </div>
+
+        <input type="submit" value="Guardar" class="btn btn-success"
+        [disabled]="postNew.invalid">   
+    </form>
+
+    <br>
+</div>
