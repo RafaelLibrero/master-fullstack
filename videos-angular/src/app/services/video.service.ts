@@ -28,12 +28,16 @@ export class VideoService {
     return this._http.post(this.api_url+'video/new', params, {headers:headers});
   }
 
-  getVideos(token: any):Observable<any>{
+  getVideos(token: any, page: any):Observable<any>{
+    if(!page){
+      page = 1
+    }
+    
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Authorization', token);
 
-    return this._http.get(this.api_url+'video', {headers:headers});
+    return this._http.get(this.api_url+'video?page='+page, {headers:headers});
   }
 
   getVideo(token: any, id: any):Observable<any>{

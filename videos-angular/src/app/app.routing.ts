@@ -14,6 +14,7 @@ import { IdentityGuard } from "./services/identity.guard";
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'home', component: HomeComponent},
+    {path: 'home/:page', component: HomeComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'login', component: LoginComponent},
     {path: 'logout/:sure', component: LoginComponent},

@@ -134,7 +134,7 @@ class VideoController extends AbstractController {
             $query = $entityManager->createQuery($dql);
 
             $page = $request->query->getInt('page', 1);
-            $items_per_page = 5;
+            $items_per_page = 6;
 
             $pagination = $paginator->paginate($query, $page, $items_per_page);
             $total = $pagination->getTotalItemCount();
