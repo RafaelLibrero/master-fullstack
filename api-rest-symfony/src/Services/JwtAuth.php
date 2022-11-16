@@ -44,7 +44,7 @@ class JwtAuth {
                 $data = $jwt;
             } else {
                 $decoded = JWT::decode($jwt, $this->key, ['HS256']);
-                $data = $jwt;
+                $data = $decoded;
             }
         } else {
             $data = [
@@ -74,7 +74,7 @@ class JwtAuth {
             $auth = false;
         }
 
-        if ($identity != false) {
+        if ($identity) {
             return $decoded;
         } else {
             return $auth;
