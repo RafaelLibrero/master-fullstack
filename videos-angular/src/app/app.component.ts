@@ -19,11 +19,11 @@ export class AppComponent implements OnInit, DoCheck{
   }
 
   ngOnInit(){
-    console.log(this.identity)
+    
   }
 
   ngDoCheck(){
-    this.loadUser();
+    this.loadUser()
   }
 
   loadUser(){
