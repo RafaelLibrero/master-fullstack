@@ -12,6 +12,7 @@ const appRoutes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'login', component: LoginComponent},
+    {path: 'logout/:sure', component: LoginComponent},
     {path: 'error', component: ErrorComponent},
     {path: '**', component: ErrorComponent}
 ];
