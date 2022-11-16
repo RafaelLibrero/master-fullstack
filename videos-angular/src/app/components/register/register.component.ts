@@ -10,15 +10,16 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  public page_title: string;
-  public user: User;
-  public status: string = "";
+  public page_title: string
+  public user: User
+  public status: string
 
   constructor(
     private _userService: UserService
   ) {
-    this.page_title = "Registro";
-    this.user = new User(1, '', '', '', '', 'ROLE_USER', '');
+    this.page_title = "Registro"
+    this.user = new User(1, '', '', '', '', 'ROLE_USER', '')
+    this.status = ""
   }
 
   ngOnInit(): void {
