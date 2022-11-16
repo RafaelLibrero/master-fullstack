@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   public user: User
   public identity: any
   public status: string
-  public token: string
+  public token: any
 
   constructor(
     private _userService: UserService,
@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
     this.page_title = "Identificate"
     this.user = new User(1, '', '', '', '', 'ROLE_USER', '')
     this.status = ""
-    this.token = ""
   }
   
   ngOnInit(): void {
