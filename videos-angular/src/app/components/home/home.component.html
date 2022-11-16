@@ -28,6 +28,17 @@
             </div>
         </article>
     </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" [routerLink]="['/home', prev_page]">Anterior</a></li>
+            <ul class="pagination" *ngFor="let num of number_pages">
+                <a class="page-link" [routerLink]="['/home', num]">{{num}}</a>
+            </ul>
+            
+            <li class="page-item"><a class="page-link" [routerLink]="['/home', next_page]">Siguiente</a></li>
+        </ul>
+    </nav>
 </div>
 
 <div class="col-md-12 mt-3" *ngIf="!identity || !identity.name">
