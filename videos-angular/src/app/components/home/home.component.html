@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="video-buttons mt-3">
-                    <a href="#" class="btn btn-success mr-2">Leer</a>
+                    <a [routerLink]="['/video', video.id]" class="btn btn-success mr-2">Leer</a>
                     <a [routerLink]="['/editar', video.id]" class="btn btn-warning mr-2">Editar</a>
                     <button type="button" class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#myModal'+video.id">
                         Borrar

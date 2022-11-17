@@ -7,6 +7,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { UserEditComponent } from "./components/user-edit/user-edit.component";
 import { VideoNewComponent } from "./components/video-new/video-new.component";
 import { VideoEditComponent } from "./components/video-edit/video-edit.component";
+import { VideoDetailComponent } from "./components/video-detail/video-detail.component";
 
 import { ErrorComponent } from "./components/error/error.component";
 
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
     {path: 'ajustes', component: UserEditComponent, canActivate: [IdentityGuard]},
     {path: 'guardar', component: VideoNewComponent, canActivate: [IdentityGuard]},
     {path: 'editar/:id', component: VideoEditComponent, canActivate: [IdentityGuard]},
+    {path: 'video/:id', component: VideoDetailComponent, canActivate: [IdentityGuard]},
     {path: 'error', component: ErrorComponent},
     {path: '**', component: ErrorComponent}
 ];

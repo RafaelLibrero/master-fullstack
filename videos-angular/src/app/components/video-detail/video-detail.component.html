@@ -1,0 +1,10 @@
+<div class="col-md-12" *ngIf="!video">
+    Cargando...
+</div>
+
+<div class="col-md-12 mt-3" *ngIf="video">
+    <h1>{{video.title}}</h1>
+
+    
+    <p [innerHTML]="video.description"></p>
+</div>
