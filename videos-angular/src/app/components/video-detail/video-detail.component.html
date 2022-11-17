@@ -9,5 +9,6 @@
         <iframe width="560" height="315" [src]="getVideoIframe(video.url)" frameborder="0" 
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </p>
+    <span class="badge badge-secondary">{{user.name + ' ' + user.surname}}</span>
     <p [innerHTML]="video.description"></p>
 </div>

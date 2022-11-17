@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { VideoService } from 'src/app/services/video.service';
 import { Video } from 'src/app/models/video';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-video-detail',
@@ -16,6 +17,7 @@ export class VideoDetailComponent implements OnInit {
   public identity
   public token
   public video: Video
+  public user: User
   public status: string
 
   constructor(
@@ -28,6 +30,7 @@ export class VideoDetailComponent implements OnInit {
     this.identity = this._userService.getIdentity()
     this.token = this._userService.getToken()
     this.video = new Video(1, this.identity.sub, '', '', '', '', null, null)
+    this.user = new User(1, '', '', '', '', '', '')
     this.status = ""
   }
 
@@ -43,6 +46,7 @@ export class VideoDetailComponent implements OnInit {
         response => {
           if(response.status == 'success'){
             this.video = response.video
+            this.user = response.video.user
           } else {
             this._router.navigate(['/home'])
           }
